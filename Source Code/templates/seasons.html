@@ -1,0 +1,116 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Seasons</h1>
+
+<p>This is the page for the Seasons table. Here, you are able to view, edit, delete, and add a row on to the table.</p>
+
+<p>
+
+<p>Seasons Legend</p>
+
+<ul>
+  <li>MVP - Most Valuable Player</li>
+  <li>DPOY - Defensive Player of the Year</li>
+  <li>MIP - Most Improved Player of the Year</li>
+  <li>6MOY - Sixth Man of the Year</li> 
+</ul>
+
+<p>Here is the table for Seasons:
+
+</p> 
+
+<div>
+  <table id="seasons" >
+    <thead>
+      <tr>
+        <th>Season ID</th>
+        <th>League ID</th>
+        <th>Season Name</th>
+        <th>Season Start Date</th>
+        <th>Season End Date</th>
+        <th>Champions</th>
+        <th>Western Champions</th>
+        <th>Eastern Champions</th>
+        <th>MVP</th>
+        <th>DPOY</th>
+        <th>MIP</th>
+        <th>6MOY</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+      <tr>
+        <td> {{ r.0 }}</td>
+        <td> {{ r[1] }}</td>
+        <td> {{ r[2] }}</td>
+        <td> {{ r[3] }}</td>
+        <td> {{ r[4] }}</td>
+        <td> {{ r[5] }}</td>
+        <td> {{ r[6] }}</td>
+        <td> {{ r[7] }}</td>
+        <td> {{ r[8] }}</td>
+        <td> {{ r[9] }}</td>
+        <td> {{ r[10] }}</td>
+        <td> {{ r[11] }}</td>
+        <td> <input type='button' name='Update' value='Edit' onclick="window.location = '/update_seasons/{{r.0}}'"> </td>
+        <td> <input type='button' name='Delete' value='Delete' onclick="window.location = '/delete_seasons/{{r.0}}'"> </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<br />
+
+<form method="POST">
+
+<legend>Add a season to the table:</legend>
+
+<div>
+  <table id="add seasons">
+    <thead>
+      <tr>
+        <th>League ID</th>
+        <th>Season Name</th>
+        <th>Season Start Date</th>
+        <th>Season End Date</th>
+        <th>Champions</th>
+        <th>Western Champions</th>
+        <th>Eastern Champions</th>
+        <th>MVP</th>
+        <th>DPOY</th>
+        <th>MIP</th>
+        <th>6MOY</th>
+    <tbody>
+      <tr>
+        <td>
+          <select name="league_id">
+            {% for a in rows_a %}
+            <option value="{{ a.0 }}">{{ a.0 }} ({{ a.1 }})</option>
+            {% endfor %}
+          </select>
+        </td>
+        <td><input type="text" name="season_name" size="10" maxlength ="255" required></td>
+        <td><input type="date" name="date_season_started" size="10" required></td>
+        <td><input type="date" name="date_season_ended" size="10" required></td>
+        <td><input type="text" name="league_champion" size="10" maxlength ="255" required></td>
+        <td><input class='fit_textbox' type="text" name="western_champion" size="10" maxlength ="255" required></td>
+        <td><input class='fit_textbox' type="text" name="eastern_champion" size="10" maxlength ="255" required></td>
+        <td><input type="text" name="most_valuable_player" size="10" maxlength ="255" ></td>
+        <td><input type="text" name="defensive_player_of_the_year" size="10" maxlength ="255" ></td>
+        <td><input type="text" name="most_improved_player_of_the_year" size="10" maxlength ="255" ></td>
+        <td><input type="text" name="sixth_man_of_the_year" size="10" maxlength ="255" ></td>
+  </table> 
+</div>
+
+<div>
+  <br />
+  <input type="submit" value="Add" />
+</div>
+
+</form>
+</p>
+
+{% endblock %}

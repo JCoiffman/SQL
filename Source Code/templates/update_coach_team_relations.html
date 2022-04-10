@@ -1,0 +1,23 @@
+{% extends "main.html" %}
+{% block content %}
+
+<h3>Update Coach Team Relation:</h3>
+<form id="update_coach_team_relations" action="/update_coach_team_relations/{{coach_team_relations[0]}}" method="post">
+  <input type="hidden" name="coach_team_id" value = "{{ coach_team_relations[0] }}">
+  Coach Name/ID: 
+  <select name="coach_id">
+    {% for a in rows_a %}
+    <option value="{{ a.0 }}">{{ a.1 }} (Coach ID: {{ a.0 }})</option>
+    {% endfor %}
+  </select> <br>  
+  Team Name/ID: 
+  <select name="team_id">
+    {% for b in rows_b %}
+    <option value="{{ b.0 }}">{{ b.1 }} (Team ID: {{ b.0 }})</option>
+    {% endfor %}
+  </select> <br>  
+  <input type="submit" value="Submit">
+ </form>
+<br/>
+
+{% endblock %}

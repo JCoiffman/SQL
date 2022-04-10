@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+{% block content %}
+
+<h3>Update Coach:</h3>
+<form id="update_coaches" action="/update_coaches/{{coaches[0]}}" method="post">
+  <input type="hidden" name="coach_id" value = "{{ coaches[0] }}">
+  Team ID: 
+  <select name="team_id">
+    {% for a in rows_a %}
+    <option value="{{ a.0 }}">{{ a.0 }} ({{ a.1 }})</option>
+    {% endfor %}
+  </select> <br>  
+  Coach Name: <input type="text" name="coach_name" value = "{{ coaches[2] }}" required><br>
+  Coach Wins: <input type="number" name="coach_wins" value = "{{ coaches[3] }}" size="10" min="0" required><br>
+  Coach Losses: <input type="number" name="coach_losses" value = "{{ coaches[4] }}" size="10" min="0" required><br>  
+  Coach Win Percentage: <input type="number" name="coach_win_percentage" value = "{{ coaches[5] }}" size="10"  min="0" max="1" step="0.001" required><br>
+  <input type="submit" value="Submit">
+ </form>
+<br/>
+
+{% endblock %}

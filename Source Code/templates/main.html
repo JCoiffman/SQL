@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <title>Basketball Stats Database</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+</head>
+<body>
+    <nav id="links">
+        <a href="/index">Home</a> |
+        <a href="/league_histories">League Histories</a> |
+        <a href="/seasons">Seasons</a> |
+        <a href="/teams">Teams</a> |
+        <a href="/players">Players</a> |
+        <a href="/coaches">Coaches</a> |
+        <a href="/player_team_relations">Player Team Relations</a> |
+        <a href="/coach_team_relations">Coach Team Relations</a>
+    </nav>
+    <div id="page_content">
+        {% block content %}{% endblock %}    
+    </div>
+</body>
+</html>

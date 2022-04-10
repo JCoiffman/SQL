@@ -1,0 +1,60 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>League Histories</h1>
+
+<p>This is the page for the League Histories table. Here, you are able to view, edit, delete, and add a row on to the table.</p>
+
+<p>
+
+<p>Here is the table for League Histories: 
+
+</p> 
+
+  <div>
+    <table id="league_histories">
+      <thead>
+        <tr>
+          <th>League ID</th>
+          <th>League Name</th>
+          <th>Number of Completed Seasons</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in rows %}
+        <tr>
+          <td> {{ r.0 }}</td>
+          <td> {{ r[1] }}</td>
+          <td> {{ r[2] }}</td>
+          <td> <input type='button' name='Update' value='Edit' onclick="window.location = '/update_league_histories/{{r.0}}'"> </td>
+          <td> <input type='button' name='Delete' value='Delete' onclick="window.location = '/delete_league_histories/{{r.0}}'"> </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>  
+  </div>
+  
+</p>
+
+<form method="POST">
+  <legend>Add a league to the table:</legend>
+    <div>
+      <table id="add_league_histories">
+        <thead>
+          <tr>
+            <th> League Name</th>
+            <th> Number of Completed Seasons</th>
+        <tbody>
+          <tr>
+            <td><input type="text" name="league_name" size="10" maxlength ="255" required></td>
+            <td> <input class='fit_textbox' type="number" name="completed_seasons_num" size="10" maxlength="11" min="0" required></td>
+        </table>
+    </div>
+    <div>
+    <br />
+    <input type="submit" value="Add" />
+  </div>
+</form>
+
+{% endblock %}

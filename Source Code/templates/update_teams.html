@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% block content %}
+
+<h3>Update Team:</h3>
+<form id="update_teams" action="/update_teams/{{teams[0]}}" method="post">
+  <input type="hidden" name="team_id" value = "{{ teams[0] }}">
+  Season ID:
+  <select name="season_id">
+    {% for a in rows_a %}
+    <option value="{{ a.0 }}">{{ a.0 }} ({{ a.1 }})</option>
+    {% endfor %}
+  </select> <br>
+  Team Name: <input type="text" name="team_name" value = "{{ teams[2] }}" required><br>
+  Team Place (City): <input type="text" name="team_place_city" value = "{{ teams[3] }}" ><br>
+  Team Place (State): <input type="text" name="team_place_state" value = "{{ teams[4] }}" ><br>
+  Points Per Game: <input type="number" name="points_per_game" value = "{{ teams[5] }}" size="10"  min="0" step="0.1" required><br>
+  Assists Per Game: <input type="number" name="assists_per_game" value = "{{ teams[6] }}" size="10"  min="0" step="0.1" required><br>
+  Steals per Game: <input type="number" name="steals_per_game" value = "{{ teams[7] }}"  size="10"  min="0" step="0.1" required><br>
+  Blocks Per Game: <input type="number" name="blocks_per_game" value = "{{ teams[8] }}" size="10"  min="0" step="0.1" required><br>
+  Rebounds Per Game: <input type="number" name="rebounds_per_game" value = "{{ teams[9] }}" size="10"  min="0" step="0.1" required><br>
+  Fouls Per Game: <input type="number" name="fouls_per_game" value = "{{ teams[10] }}" size="10"  min="0" step="0.1" required><br>
+  FG Attempted Per Game: <input type="number" name="fg_attempted_per_game" value = "{{ teams[11] }}" size="10"  min="0" step="0.1" required><br>
+  3PT FG Attempted Per Game: <input type="number" name="three_pt_fg_attempted_per_game" value = "{{ teams[12] }}" size="10"  min="0" step="0.1" required><br>
+  FT Attempted Per Game: <input type="number" name="ft_attempted_per_game" value = "{{ teams[13] }}" size="10"  min="0" step="0.1" required><br>
+  FG Percentage: <input type="number" name="fg_percentage" value = "{{ teams[14] }}" size="10"  min="0" max="1" step="0.001" required><br>
+  3PT FG Percentage: <input type="number" name="three_pt_fg_percentage" value = "{{ teams[15] }}" size="10"  min="0" max="1" step="0.001" required><br>
+  FT Percentage: <input type="number" name="ft_percentage" value = "{{ teams[16] }}" size="10"  min="0" max="1" step="0.001" required><br>
+  Point Differential: <input type="number" name="point_differential" value = "{{ teams[17] }}" size="10" step="0.1" required><br>
+  Regular Seasons Wins: <input type="number" name="reg_season_wins_num" value = "{{ teams[18] }}" size="10"  min="0" required><br>
+  Regular Season Losses: <input type="number" name="reg_season_losses_num" value = "{{ teams[19] }}" size="10" min="0" required><br>
+  Regular Season Win Percentage: <input type="number" name="reg_season_win_percentage" value = "{{ teams[20] }}" size="10" min="0" max="1" step="0.001" required><br>
+  <input type="submit" value="Submit">
+ </form>
+<br/>
+
+{% endblock %}

@@ -1,0 +1,164 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Teams</h1>
+
+<p>This is the page for the Teams table. Here, you are able to view, edit, delete, and add a row on to the table.</p>
+
+<p>
+
+<p>Teams Legend</p>
+
+<ul>
+  <li>PPG - Points Per Game</li>
+  <li>APG - Assists Per Game</li>
+  <li>SPG - Steals Per Game</li>
+  <li>BPG - Blocks Per Game</li> 
+  <li>RPG - Rebounds Per Game</li>
+  <li>PF - Personal Fouls Per Game</li>
+  <li>FGA - Field Goals Attempted Per Game</li>
+  <li>3PA - Three Point Field Goals Attempted Per Game</li>
+  <li>FTA - Free Throws Attempted Per Game</li>
+  <li>FG% - Field Goal Percentage</li>
+  <li>3P% - Three Point Field Goal Percentage</li>
+  <li>FT% - Free Throw Percentage</li>
+  <li>+/- - Point Differential</li>
+  <li>W - Wins</li>
+  <li>L - Losses</li>
+  <li>W/L% - Win Loss Percentage</li>
+</ul>
+
+<p>Here is the table for Teams: 
+  
+</p> 
+
+<div>
+  <table id="teams" >
+    <thead>
+      <tr>
+        <th>Team ID</th>
+        <th>Season ID</th>
+        <th>Team Name</th>
+        <th>Team City</th>
+        <th>Team State</th>
+        <th>PPG</th>
+        <th>APG</th>
+        <th>SPG</th>
+        <th>BPG</th>
+        <th>RPG</th>
+        <th>PF</th>
+        <th>FGA</th>
+        <th>3PA</th>
+        <th>FTA</th>
+        <th>FG%</th>
+        <th>3P%</th>
+        <th>FT%</th>
+        <th>+/-</th>
+        <th>W</th>
+        <th>L</th>
+        <th>W/L%</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+      <tr>
+        <td> {{ r.0 }}</td>
+        <td> {{ r[1] }}</td>
+        <td> {{ r[2] }}</td>
+        <td> {{ r[3] }}</td>
+        <td> {{ r[4] }}</td>
+        <td> {{ r[5] }}</td>
+        <td> {{ r[6] }}</td>
+        <td> {{ r[7] }}</td>
+        <td> {{ r[8] }}</td>
+        <td> {{ r[9] }}</td>
+        <td> {{ r[10] }}</td>
+        <td> {{ r[11] }}</td>
+        <td> {{ r[12] }}</td>
+        <td> {{ r[13] }}</td>
+        <td> {{ r[14] }}</td>
+        <td> {{ r[15] }}</td>
+        <td> {{ r[16] }}</td>
+        <td> {{ r[17] }}</td>
+        <td> {{ r[18] }}</td>
+        <td> {{ r[19] }}</td>
+        <td> {{ r[20] }}</td>
+        <td> <input type='button' name='Update' value='Edit' onclick="window.location = '/update_teams/{{r.0}}'"> </td>
+        <td> <input type='button' name='Delete' value='Delete' onclick="window.location = '/delete_teams/{{r.0}}'"> </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<br />
+
+<form method="POST"> 
+  
+<legend>Add a team to the table:</legend>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Season ID</th>
+        <th>Team Name</th>
+        <th>Team City</th>
+        <th>Team State</th>
+        <th>PPG</th>
+        <th>APG</th>
+        <th>SPG</th>
+        <th>BPG</th>
+        <th>RPG</th>
+        <th>PF</th>
+        <th>FGA</th>
+        <th>3PA</th>
+        <th>FTA</th>
+        <th>FG%</th>
+        <th>3P%</th>
+        <th>FT%</th>
+        <th>+/-</th>
+        <th>W</th>
+        <th>L</th>
+        <th>W/L%</th>
+    <tbody>
+      <tr>
+        <td>
+          <select name="season_id">
+            {% for a in rows_a %}
+            <option value="{{ a.0 }}">{{ a.0 }} ({{ a.1 }})</option>
+            {% endfor %}
+          </select>
+        </td>
+        <td><input type="text" name="team_name" size="10" maxlength ="255" required></td>
+        <td><input type="text" name="team_place_city" size="10" maxlength="255"></td>
+        <td><input type="text" name="team_place_state" size="10" maxlength="255" required></td>
+        <td><input type="number" min="0" step="0.1" name="points_per_game" size="10" required></td>
+        <td><input type="number" name="assists_per_game" size="10"  min="0" step="0.1" required></td>
+        <td><input type="number" name="steals_per_game" size="10"  min="0" step="0.1" required></td>
+        <td><input type="number" name="blocks_per_game" size="10" min="0" step="0.1" required></td>
+        <td><input type="number" name="rebounds_per_game" size="10" min="0" step="0.1" required></td>
+        <td><input type="number" name="fouls_per_game" size="10" min="0" step="0.1" required></td>
+        <td><input type="number" name="fg_attempted_per_game" size="10" min="0" step="0.1" required></td>
+        <td><input type="number" name="three_pt_fg_attempted_per_game" size="10" min="0" step="0.1" required></td>
+        <td><input type="number" name="ft_attempted_per_game" size="10" min="0" step="0.1" required></td>
+        <td><input type="number" name="fg_percentage" size="10" min="0" max="1" step="0.001" required></td>
+        <td><input type="number" name="three_pt_fg_percentage" size="10" min="0" max="1" step="0.001" required></td>
+        <td><input type="number" name="ft_percentage" size="10" min="0" max="1" step="0.001" required></td>
+        <td><input type="number" name="point_differential" size="10" step="0.1" required></td>  
+        <td><input type="number" name="reg_season_wins_num" size="10" min="0" required></td>
+        <td><input type="number" name="reg_season_losses_num" size="10" min="0" required></td>
+        <td><input type="number" name="reg_season_win_percentage" size="10" min="0" max="1" step="0.001" required></td>
+  </table>
+</div>
+
+<div>
+  <br />
+  <input type="submit" value="Add" />
+</div>
+
+</form>
+</p>
+
+{% endblock %}

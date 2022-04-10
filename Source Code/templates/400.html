@@ -1,0 +1,6 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Error 400 - Bad Request</h1>
+<p>Unable to add selected entity until entity table associated with foreign key is not empty.</p>
+<p>E.g. A team entity (e.g. 1995-1996 Chicago Bulls) cannot be added until the league history entity (e.g. NBA) table is not empty, etc.</p>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block content %}
+
+<h3>Update Season:</h3>
+<form id="update_seasons" action="/update_seasons/{{seasons[0]}}" method="post">
+  <input type="hidden" name="season_id" value = "{{ seasons[0] }}">
+  League ID: 
+  <select name="league_id">
+    {% for a in rows_a %}
+    <option value="{{ a.0 }}">{{ a.0 }} ({{ a.1 }})</option>
+    {% endfor %}
+  </select> <br>
+  Season Name: <input type="text" name="season_name" value = "{{ seasons[2] }}" required><br>
+  Season Start Date: <input type="date" name="date_season_started" value = "{{ seasons[3] }}" required><br>
+  Season End Date: <input type="date" name="date_season_ended" value = "{{ seasons[4] }}" required><br>
+  Champions: <input type="text" name="league_champion" value = "{{ seasons[5] }}" required><br>
+  Western Champions: <input type="text" name="western_champion" value = "{{ seasons[6] }}" required><br>
+  Eastern Champions: <input type="text" name="eastern_champion" value = "{{ seasons[7] }}" required><br>
+  Most Valuable Player: <input type="text" name="most_valuable_player" value = "{{ seasons[8] }}" ><br>
+  Defensive Player of the Year: <input type="text" name="defensive_player_of_the_year" value = "{{ seasons[9] }}" ><br>
+  Most Improved Player: <input type="text" name="most_improved_player_of_the_year" value = "{{ seasons[10] }}" ><br>
+  Sixth Man of the Year: <input type="text" name="sixth_man_of_the_year" value = "{{ seasons[11] }}" ><br>
+  <input type="submit" value="Submit">
+ </form>
+<br/>
+
+{% endblock %}

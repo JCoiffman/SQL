@@ -1,0 +1,13 @@
+{% extends "main.html" %}
+{% block content %}
+
+<h3>Update League History:</h3>
+<form id="update_league_histories" action="/update_league_histories/{{league_histories[0]}}" method="post">
+  <input type="hidden" name="league_id" value = "{{ league_histories[0] }}">
+  League Name: <input type="text" name="league_name" value = "{{ league_histories[1] }}" required><br>
+  Number of Seasons: <input type="number" name="completed_seasons_num" value = "{{ league_histories[2] }}" size="10" maxlength="11" min="0" required><br>
+  <input type="submit" value="Submit">
+ </form>
+<br/>
+
+{% endblock %}

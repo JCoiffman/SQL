@@ -1,0 +1,83 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Coaches</h1>
+
+<p>This is the page for the Coach Team Relations table. Here, you are able to view, edit, delete, and add a row on to the table.</p>
+
+<p>
+
+<p>Here is the table for Coaches: 
+
+<br/>
+
+<div>
+  <table id="coaches" >
+    <thead>
+      <tr>
+        <th>Coach ID</th>
+        <th>Team ID</th>
+        <th>Coach Name</th>   
+        <th>Coach Wins</th>
+        <th>Coach Losses</th>
+        <th>Coach Win Percentage</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+      <tr>
+        <td> {{ r.0 }}</td>
+        <td> {{ r[1] }}</td>
+        <td> {{ r[2] }}</td>
+        <td> {{ r[3] }}</td>
+        <td> {{ r[4] }}</td>
+        <td> {{ r[5] }}</td>
+        <td> <input type='button' name='Update' value='Edit' onclick="window.location = '/update_coaches/{{r.0}}'"> </td>
+        <td> <input type='button' name='Delete' value='Delete' onclick="window.location = '/delete_coaches/{{r.0}}'"> </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>  
+</div>
+<br />
+
+
+<form method="POST">
+
+<legend>Add a coach to the table:</legend>
+
+<div>
+  <table id="add_coaches">
+    <thead>
+      <tr>
+        <th>Team ID</th>
+        <th>Coach Name</th>
+        <th>Coach Wins</th>
+        <th>Coach Losses</th>
+        <th>Coach Win Percentage</th>
+    <tbody>
+      <tr>
+        <td>
+          <select name="team_id">
+            {% for a in rows_a %}
+            <option value="{{ a.0 }}">{{ a.0 }} ({{ a.1 }})</option>
+            {% endfor %}
+          </select>
+        </td>
+        <td><input type="text" name="coach_name" size="10" maxlength ="255" required></td>
+        <td> <input type="number" name="coach_wins" size="10" min="0" required></td>
+        <td> <input type="number" name="coach_losses" size="10" min="0" required></td>
+        <td> <input class='fit_textbox' type="number" name="coach_win_percentage" size="10"  min="0" max="1" step="0.001" required></td>
+  </table>
+</div>
+
+<div>
+  <br />
+  <input type="submit" value="Add" />
+</div>
+
+</form>
+</p>
+
+{% endblock %}

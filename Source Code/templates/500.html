@@ -1,0 +1,6 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Error 500 - Something Has Gone Terribly Wrong</h1>
+<p>Unable to delete entity until all associated entities (i.e. foreign key linked) are deleted.</p>
+<p>E.g. A league history entity (e.g. NBA) cannot be deleted until all associated team entities (e.g. 1995-1996 Chicago Bulls) associated with the league history entity are deleted, etc.</p>
+{% endblock %}
